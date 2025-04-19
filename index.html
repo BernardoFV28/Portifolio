@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Bernardo" />
+  <meta name="description" content="Portfólio de Bernardo - Desenvolvedor Web" />
+  <title>Portfólio - Bernardo F.V</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #000;
+      color: #33ff33;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      transition: background-color 0.5s, color 0.5s;
+      overflow-x: hidden;
+    }
+    
+
+    .light-mode {
+      background-color: #f5f5f5;
+      color: #267c2a;
+      font-family: 'Arial', sans-serif;
+      
+    }
+
+    .estrelas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/fundo.png') repeat top center;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .avatar-flutuante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 120px;
+      height: auto;
+      z-index: 99;
+      animation: aparecer 2s ease-in-out forwards, flutuar 3s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    .avatar-flutuante img {
+      width: 100%;
+      border-radius: 20%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .balao-fala {
+      position: fixed;
+      bottom: 160px;
+      right: 150px;
+      background: #003300;
+      color: #33ff33;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      box-shadow: 0 0 10px rgba(0,255,0,0.3);
+      animation: fadeInBalao 1s ease forwards;
+      z-index: 99;
+      display: none;
+    }
+
+    @keyframes fadeInBalao {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes flutuar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header {
+      background: #003300;
+      color: #33ff33;
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    nav a {
+      color: #33ff33;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00cc66;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: none;
+      border: 2px solid #33ff33;
+      color: #33ff33;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .light-mode .theme-toggle {
+      border-color: #222;
+      color: #222;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    main section {
+      padding: 80px 20px;
+      margin-top: 20px;
+      z-index: 1;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #001100;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 54, 3, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    li:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 255, 0, 0.3);
+    }
+
+    li h3 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    li p {
+      font-size: 1rem;
+      color: #66ff66;
+    }
+
+    .contact {
+      background-color: #000;
+      border-top: 2px solid #00cc66;
+      padding: 80px 20px;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #00cc66;
+    }
+
+    .contact p {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #66ff66;
+      margin-bottom: 40px;
+    }
+
+    .contact form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact form input,
+    .contact form textarea {
+      width: 100%;
+      padding: 15px;
+      background-color: #001100;
+      border: 2px solid #004400;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      color: #33ff33;
+    }
+
+    .contact form button {
+      align-self: flex-end;
+      background-color: #00cc66;
+      color: black;
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #000;
+      color: #33ff33;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="estrelas"></div>
+  <header>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">Dia ☀️ / Noite 💻</button>
+    <h1>Bernardo Fernandes Valentim</h1>
+    <p>[~] Criando experiências digitais do terminal para a sua tela</p>
+  </header>
+
+  <main>
+    <section id="sobre" class="about" aria-label="Seção Sobre Mim">
+      <div class="container">
+        <h1>☕ Ei, você aí...</h1>
+
+  <p>
+Nada aqui é por acaso. Se esse café te chamou,  
+é porque seu projeto tá pedindo algo mais —  
+algo com <strong>alma</strong>, com <strong>presença digital de verdade</strong>.<br><br>
+
+Me chamo <strong>Bernardo</strong>. <br><br> 
+Sou dev web, mas prefiro dizer que sou <strong>arquiteto de experiências</strong>.  
+Pego ideias cruas, às vezes mal rabiscadas num guardanapo,  
+e transformo em sites e sistemas que não só funcionam —  
+<em>seduzem, conectam, vendem, impactam</em>.
+<br><br>
+Mas olha só: eu <strong>não sou só mais um dev</strong>.  
+Eu me envolvo, mergulho, desenrolo,  
+cutuco sua ideia até ela gritar de originalidade.
+<br><br>
+🔥 Não tô aqui pra te entregar um site comum.  
+Tô aqui pra te entregar um <strong>portal</strong>,  
+uma <strong>vitrine viva</strong>, um canal que faz sua marca  
+se destacar no meio do mar digital onde todo mundo tá gritando igual.
+<br><br>
+Você quer um <em>código bonito</em>  
+ou uma <strong>presença digital que causa impacto?</strong>
+<br><br>
+Se for o segundo…
+<br><br>
+Então <strong>bora tomar esse café, trocar ideia</strong>,  
+e começar algo que ninguém vai esquecer.
+
+  </p>
+
+         </div>
+    </section>
+
+    <section id="habilidades" class="skills" aria-label="Seção de Habilidades Técnicas">
+      <div class="container">
+        <h2>Minhas Habilidades</h2>
+        <ul>
+          <li>
+            <h3>Python</h3>
+            <p>Desenvolvimento de aplicações back-end, automações e análise de dados. Experiência com Flask e Django.</p>
+          </li>
+          <li>
+            <h3>C#</h3>
+            <p>Criação de APIs, sistemas corporativos e apps com ASP.NET e Xamarin.</p>
+          </li>
+          <li>
+            <h3>Django</h3>
+            <p>Aplicações web robustas com APIs RESTful e admin customizado.</p>
+          </li>
+          <li>
+            <h3>HTML & CSS</h3>
+            <p>Interfaces modernas, acessíveis e responsivas com HTML5 e CSS3.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <section id="contato" class="contact" aria-label="Seção de Contato">
+    <div class="container">
+      <h2>Entre em Contato</h2>
+      <p>Gostou do meu trabalho? Vamos conversar sobre como posso ajudar seu projeto. Envie sua mensagem abaixo e eu entrarei em contato o mais rápido possível!</p>
+      <form action="mailto:bernardo.8350855@aluno.mg.gov.br" method="post" enctype="text/plain">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Seu E-mail" required>
+
+        <label for="mensagem">Mensagem</label>
+        <textarea name="mensagem" id="mensagem" placeholder="Sua Mensagem" rows="6" required></textarea>
+
+        <button type="submit">Vamos Conversar!</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="avatar-flutuante" onclick="mostrarMensagem()">
+    <img src="images/avatar.png" alt="Avatar do Bernardo" />
+  </div>
+  <div class="balao-fala" id="balaoFala">Bem-vindo(a)! Explore meus projetos 👾</div>
+
+  <footer>
+    <p>&copy; 2025 Bernardo. Desenvolvedor Web. <a href="mailto:bernardo.8350855@aluno.mg.gov.br">Contate-me</a></p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+    }
+
+    function mostrarMensagem() {
+      const balao = document.getElementById('balaoFala');
+      balao.style.display = 'block';
+      balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+    }
+
+    const frases = [
+      'Hoje é um bom dia pra codar ☕',
+      'Explore meus projetos,faço magicas com os meus codigos front-end ☕',
+      'Se encontrar um bug, me chame .-. ☕',
+      'React, Python e uma pitada de magia ☕',
+      'Quer fazer algo único? Vem comigo! ☕',
+      'quer me conhecer melhor ? contate-me ☕'
+    ];
+  </script>
+</body>
+</html>
