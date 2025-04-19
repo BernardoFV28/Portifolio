@@ -28,7 +28,50 @@
       transition: background-color 0.5s, color 0.5s;
       overflow-x: hidden;
     }
-    
+    .glitch {
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red; }
+      20% { text-shadow: -2px 0 cyan; }
+      40% { text-shadow: 2px 0 lime; }
+      60% { text-shadow: -2px 0 magenta; }
+      80% { text-shadow: 2px 0 blue; }
+      100% { text-shadow: -2px 0 yellow; }
+    }
+
+    .terminal {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background-color: #00ff00;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .project {
+      margin-top: 1.5rem;
+    }
+
+    a {
+      color: #00ff00;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
 
     .light-mode {
       background-color: #f5f5f5;
@@ -375,6 +418,30 @@ e começar algo que ninguém vai esquecer.
       </div>
     </section>
   </main>
+    <div class="terminal">
+    <h1 class="glitch">┌─[H4CK3R@PORTFÓLIO]─[~]</h1>
+    <p>$ cat projetos.txt <span class="cursor"></span></p>
+
+    <div class="project">
+      <h2>&gt; projeto de banco { em desenvolvimento}</h2>
+      <p>Projeto steampunk infiltrado: missão para controlar os autômatos da cidade. <br>
+    
+    </div>
+
+    <div class="project">
+      <h2>&gt; Raízes de Cobre </h2>
+      <p> Raízes de Cobre é um mundo onde magia e steampunk colidem. Cidades flutuam, máquinas rugem, e a natureza agoniza. Um império necromante usa o Necrocrystal pra dominar tudo, enquanto criaturas místicas e heróis tentam
+        resistir. No meio disso, a Conexão das Raízes pulsa como última esperança — uma força selvagem que une terra, ferro e espírito.</p> <br>
+      <a href="https://bernardofv28.github.io/raizes-de-cobre/" class="icone">
+        </a></p>
+    </div>
+
+    <div class="project">
+      <h2>&gt; site sobre historia </h2>
+      <p> ja pensou a historia contada de forma resumida mas de forma muito viciante</p> <br>
+    
+    </div>
+  </div>
 
   <section id="contato" class="contact" aria-label="Seção de Contato">
     <div class="container">
