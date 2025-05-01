@@ -1,39 +1,36 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('form-hacker');
+  const respostaEl = document.getElementById('resposta');
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-app.post('/enviar-email', async (req, res) => {
-  const { nome, email, mensagem } = req.body;
+    // Pega os dados do formulário de forma elegante
+    const formData = new FormData(form);
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail', // ou 'hotmail', 'outlook', etc.
-    auth: {
-      user: 'seuemail@gmail.com',
-      pass: 'sua_senha_de_aplicativo', // não usa a senha normal!
-    },
+    // Exibe carregando
+    respostaEl.textContent = 'Enviando mensagem... ☕';
+
+    try {
+      const response = await fetch('enviar.php', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('Erro na resposta do servidor');
+
+      const respostaTexto = await response.text();
+
+      // Feedback suave
+      respostaEl.textContent = respostaTexto;
+
+      // Limpa o formulário se tudo deu certo
+      form.reset();
+
+    } catch (error) {
+      console.error('Erro no envio:', error);
+      respostaEl.textContent = 'Ocorreu um erro no envio 🧨 Tenta de novo!';
+    }
   });
-
-  const mailOptions = {
-    from: email,
-    to: 'seuemail@gmail.com',
-    subject: `Mensagem de ${nome}`,
-    text: mensagem,
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).send({ success: true, message: 'Email enviado!' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ success: false, message: 'Erro ao enviar.' });
-  }
 });
 
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
