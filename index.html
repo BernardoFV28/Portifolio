@@ -6,6 +6,7 @@
   <meta name="author" content="Bernardo" />
   <meta name="description" content="Portfólio de Bernardo - Desenvolvedor Web" />
   <title>Portfólio - Bernardo Fernandes.V</title>
+  <
   
     <!-- Favicon com o formato .png -->
     <link rel="icon" href="images/favconportifolio.png" type="image/png">
@@ -517,12 +518,13 @@ e começar algo que ninguém vai esquecer.
 <h1>> Terminal de Contato</h1>
   <p>Digite sua mensagem e pressione [ENVIAR]. O protocolo será iniciado.</p>
 
-  <form id="form-hacker">
-    <input type="text" name="nome" placeholder="Seu Nome" required />
-    <input type="email" name="email" placeholder="Seu E-mail" required />
-    <textarea name="mensagem" rows="6" placeholder="Sua Mensagem" required></textarea>
-    <button type="submit">ENVIAR</button>
-  </form>
+<form id="form-hacker" action="enviar.php" method="POST">
+  <input type="text" name="nome" placeholder="Seu Nome" required />
+  <input type="email" name="email" placeholder="Seu E-mail" required />
+  <textarea name="mensagem" placeholder="Sua Mensagem" required></textarea>
+  <button type="submit">ENVIAR</button>
+</form>
+
 
   <div id="resposta"></div>
 
