@@ -4,7 +4,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $mensagem = $_POST["mensagem"];
 
-    $to = "seuemail@dominio.com";
+    $to = "bernardo.8350855@aluno.mg.gov.br"
+
     $subject = "Mensagem de $nome";
     $body = "Nome: $nome\nEmail: $email\n\nMensagem:\n$mensagem";
 
