@@ -471,33 +471,47 @@ e começar algo que ninguém vai esquecer.
 
   </div>
   <div class="contato" id="contato">
-      <form id="form-hacker">
-        <input type="text" name="nome" placeholder="Seu Nome" required>
-        <input type="email" name="email" placeholder="Seu Email" required>
-        <textarea name="mensagem" placeholder="Escreve aí, guerreiro" required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-      
-      <script>
-      document.getElementById('form-hacker').addEventListener('submit', async (e) => {
-        e.preventDefault();
-      
-        const dados = {
-          nome: e.target.nome.value,
-          email: e.target.email.value,
-          mensagem: e.target.mensagem.value
-        };
-      
-        const resposta = await fetch('http://localhost:3000/enviar-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dados)
-        });
-      
-        const json = await resposta.json();
-        alert(json.message);
+<h1>> Terminal de Contato</h1>
+  <p>Digite sua mensagem e pressione [ENVIAR]. O protocolo será iniciado.</p>
+
+  <form id="form-hacker">
+    <input type="text" name="nome" placeholder="Seu Nome" required />
+    <input type="email" name="email" placeholder="Seu E-mail" required />
+    <textarea name="mensagem" rows="6" placeholder="Sua Mensagem" required></textarea>
+    <button type="submit">ENVIAR</button>
+  </form>
+
+  <div id="resposta"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('form-hacker');
+      const respostaEl = document.getElementById('resposta');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        respostaEl.textContent = 'Transmitindo dados... 📡';
+
+        try {
+          const response = await fetch('enviar.php', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (!response.ok) throw new Error('Erro no servidor');
+
+          const respostaTexto = await response.text();
+          respostaEl.textContent = respostaTexto;
+          form.reset();
+        } catch (error) {
+          console.error('Erro:', error);
+          respostaEl.textContent = '⚠️ Falha no envio. Tente novamente.';
+        }
       });
-      </script>
+    });
+  </script>
 
   </div>
 
