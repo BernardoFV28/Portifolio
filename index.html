@@ -513,54 +513,15 @@ e começar algo que ninguém vai esquecer.
   </div>
 
   </div>
-  <div class="contato" id="contato">
-<h1>> Terminal de Contato</h1>
+<div class="contato" id="contato">
+  <h1 class="form-hacker">> Terminal de Contato</h1>
   <p>Digite sua mensagem e pressione [ENVIAR]. O protocolo será iniciado.</p>
 
-<form id="form-hacker" action="enviar.php" method="POST">
-  <input type="text" name="nome" placeholder="Seu Nome" required />
-  <input type="email" name="email" placeholder="Seu E-mail" required />
-  <textarea name="mensagem" placeholder="Sua Mensagem" required></textarea>
-  <button type="submit">ENVIAR</button>
-</form>
-
-
-  <div id="resposta"></div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('form-hacker');
-      const respostaEl = document.getElementById('resposta');
-
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        respostaEl.textContent = 'Transmitindo dados... 📡';
-
-        try {
-          const response = await fetch('enviar.php', {
-            method: 'POST',
-            body: formData,
-          });
-
-          if (!response.ok) throw new Error('Erro no servidor');
-
-          const respostaTexto = await response.text();
-          respostaEl.textContent = respostaTexto;
-          form.reset();
-        } catch (error) {
-          console.error('Erro:', error);
-          respostaEl.textContent = '⚠️ Falha no envio. Tente novamente.';
-        }
-      });
-    });
-  </script>
-
+  <div class="email-display">
+    <span class="prefixo">📡 canal seguro aberto:</span> 
+    <span class="email">bernardo.8350855@aluno.mg.gov.br</span>
   </div>
-
-
-
+</div>
 
   <div class="avatar-flutuante" onclick="mostrarMensagem()">
     <img src="images/avatar.png" alt="Avatar do Bernardo" />
