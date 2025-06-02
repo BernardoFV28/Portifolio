@@ -5,14 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="Bernardo" />
   <meta name="description" content="Portfólio de Bernardo - Desenvolvedor Web" />
-  <title>Portfólio - Bernardo Fernandes.V</title>
-  
-    <!-- Favicon com o formato .png -->
-    <link rel="icon" href="images/favconportifolio.png" type="image/png">
-
-    <!-- Favicon para dispositivos Apple -->
-    <link rel="apple-touch-icon" href="images/favconportifolio.png">
+  <title>Portfólio - Bernardo F.V</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
+    /* Reset and Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -25,106 +21,18 @@
       color: #33ff33;
       font-size: 1.1rem;
       line-height: 1.6;
-      transition: background-color 0.5s, color 0.5s;
+      transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
       overflow-x: hidden;
     }
-    .glitch {
-      animation: glitch 1s infinite;
-    }
-
-    @keyframes glitch {
-      0% { text-shadow: 2px 0 red; }
-      20% { text-shadow: -2px 0 cyan; }
-      40% { text-shadow: 2px 0 lime; }
-      60% { text-shadow: -2px 0 magenta; }
-      80% { text-shadow: 2px 0 blue; }
-      100% { text-shadow: -2px 0 yellow; }
-    }
-
-    .terminal {
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 20px;
-      background-color: #00ff00;
-      animation: blink 0.7s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .project {
-      margin-top: 1.5rem;
-    }
-
     
-    a {
-      color: #00ff00;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
+    /* Light Mode */
     .light-mode {
       background-color: #f5f5f5;
       color: #267c2a;
       font-family: 'Arial', sans-serif;
-      
     }
-.contato {
-  background-color: #0b0f0b;
-  color: #00ff66;
-  padding: 2rem;
-  font-family: 'Courier New', monospace;
-  border: 2px dashed #00cc66;
-  border-radius: 10px;
-  margin-top: 2rem;
-}
 
-.form-hacker {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  color: #00ff66;
-}
-
-.email-display {
-  margin-top: 1rem;
-  background-color: #0e1a0e;
-  padding: 1rem;
-  border: 1px solid #00cc66;
-  border-radius: 6px;
-  box-shadow: 0 0 10px #009944;
-  animation: glow-green 2s infinite alternate;
-}
-
-.prefixo {
-  color: #33ff99;
-  font-weight: bold;
-}
-
-.email {
-  color: #b6ffcc;
-  font-style: italic;
-}
-
-@keyframes glow-green {
-  from {
-    box-shadow: 0 0 5px #009944;
-  }
-  to {
-    box-shadow: 0 0 15px #33ff99;
-  }
-}
-
+    /* Star Background */
     .estrelas {
       position: fixed;
       top: 0;
@@ -135,8 +43,10 @@
       z-index: 0;
       pointer-events: none;
       opacity: 0.1;
+      animation: moveStars 120s linear infinite; /* Added star movement */
     }
 
+    /* Floating Avatar */
     .avatar-flutuante {
       position: fixed;
       bottom: 20px;
@@ -152,51 +62,14 @@
       width: 100%;
       border-radius: 20%;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+      transition: transform 0.3s ease; /* Added transform transition for hover */
     }
-#form-hacker input,
-#form-hacker textarea {
-  width: 100%;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  background: #000;
-  border: 2px solid #00ff88;
-  border-radius: 8px;
-  font-size: 1rem;
-  color: #00ff88;
-  font-family: 'Share Tech Mono', monospace;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 0 10px #00ff8844;
-}
 
-#form-hacker input::placeholder,
-#form-hacker textarea::placeholder {
-  color: #00ff8855;
-}
+    .avatar-flutuante img:hover {
+      transform: scale(1.05); /* Grow on hover */
+    }
 
-#form-hacker input:focus,
-#form-hacker textarea:focus {
-  border-color: #00ffaa;
-  box-shadow: 0 0 12px #00ffaa, inset 0 0 5px #00ffaa55;
-  outline: none;
-  background: #0a0a0a;
-}
-
-/* Efeito glitch opcional (ativa se quiser) */
-
-#form-hacker input:hover,
-#form-hacker textarea:hover {
-  animation: glitch 0.6s infinite;
-}
-
-@keyframes glitch {
-  0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
-  25% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
-  50% { text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff; }
-  75% { text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
-  100% { text-shadow: none; }
-}
-
-
+    /* Speech Bubble */
     .balao-fala {
       position: fixed;
       bottom: 160px;
@@ -207,11 +80,14 @@
       border-radius: 10px;
       font-size: 0.95rem;
       box-shadow: 0 0 10px rgba(0,255,0,0.3);
-      animation: fadeInBalao 1s ease forwards;
+      animation: fadeInBalao 0.5s ease forwards; /* Smoother fade in */
       z-index: 99;
       display: none;
+      opacity: 0; /* Start hidden */
+      transform: translateY(20px); /* Start slightly below */
     }
 
+    /* Keyframe Animations */
     @keyframes fadeInBalao {
       from {
         opacity: 0;
@@ -243,6 +119,16 @@
       }
     }
 
+    @keyframes moveStars { /* New keyframe for star background movement */
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 100%;
+      }
+    }
+
+    /* Header */
     header {
       background: #003300;
       color: #33ff33;
@@ -250,8 +136,28 @@
       padding: 120px 20px;
       position: relative;
       z-index: 1;
+      overflow: hidden; /* Hide overflow for title animation */
     }
 
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      animation: slideInLeft 1s ease-out forwards; /* Title animation */
+    }
+
+    header p {
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      max-width: 600px;
+      margin: 0 auto;
+      animation: slideInRight 1s ease-out forwards; /* Subtitle animation */
+      animation-delay: 0.3s; /* Delay for subtitle */
+    }
+
+    /* Navigation */
     nav {
       position: absolute;
       top: 20px;
@@ -266,13 +172,15 @@
     nav a {
       color: #33ff33;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
     }
 
     nav a:hover {
       color: #00cc66;
+      transform: translateY(-3px); /* Subtle lift on hover */
     }
 
+    /* Theme Toggle Button */
     .theme-toggle {
       position: absolute;
       right: 20px;
@@ -285,6 +193,14 @@
       cursor: pointer;
       font-weight: bold;
       transition: all 0.3s ease;
+      overflow: hidden; /* For button hover effect */
+    }
+
+    .theme-toggle:hover {
+      background-color: #33ff33;
+      color: #000;
+      box-shadow: 0 0 15px rgba(51, 255, 51, 0.6);
+      transform: scale(1.05); /* Slight scale on hover */
     }
 
     .light-mode .theme-toggle {
@@ -292,25 +208,25 @@
       color: #222;
     }
 
-    header h1 {
-      font-size: 3.5rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
+    .light-mode .theme-toggle:hover {
+      background-color: #222;
+      color: #f5f5f5;
+      box-shadow: 0 0 15px rgba(34, 34, 34, 0.6);
     }
 
-    header p {
-      font-size: 1.4rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
+    /* Sections */
     main section {
       padding: 80px 20px;
       margin-top: 20px;
       z-index: 1;
+      opacity: 0; /* Start hidden for scroll animation */
+      transform: translateY(50px); /* Start slightly below for scroll animation */
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transition for scroll animation */
+    }
+
+    main section.is-visible { /* Class added by JavaScript when in view */
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
@@ -318,6 +234,7 @@
       font-size: 2.5rem;
       margin-bottom: 20px;
       font-weight: 600;
+      animation: fadeInDown 0.8s ease-out forwards; /* Title animation for sections */
     }
 
     .container {
@@ -326,6 +243,7 @@
       margin: 0 auto;
     }
 
+    /* Skill Cards */
     ul {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -340,10 +258,12 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 54, 3, 0.2);
       transition: all 0.3s ease;
+      opacity: 0; /* Start hidden for individual skill card animation */
+      transform: translateY(20px); /* Start slightly below for individual skill card animation */
     }
 
     li:hover {
-      transform: translateY(-10px);
+      transform: translateY(-10px) scale(1.02); /* Lift and slight scale on hover */
       box-shadow: 0 8px 16px rgba(0, 255, 0, 0.3);
     }
 
@@ -357,6 +277,7 @@
       color: #66ff66;
     }
 
+    /* Contact Section */
     .contact {
       background-color: #000;
       border-top: 2px solid #00cc66;
@@ -394,6 +315,14 @@
       border-radius: 10px;
       font-size: 1.1rem;
       color: #33ff33;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus */
+    }
+
+    .contact form input:focus,
+    .contact form textarea:focus {
+      border-color: #00cc66;
+      box-shadow: 0 0 10px rgba(0, 204, 102, 0.5); /* Glowing effect on focus */
+      outline: none;
     }
 
     .contact form button {
@@ -405,15 +334,75 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Button animations */
     }
 
+    .contact form button:hover {
+      background-color: #00e673;
+      transform: translateY(-2px); /* Slight lift */
+      box-shadow: 0 5px 15px rgba(0, 204, 102, 0.4);
+    }
+
+    .contact form button:active {
+      transform: translateY(0); /* Press down effect */
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       background-color: #000;
       color: #33ff33;
       padding: 20px;
+      border-top: 1px solid #004400; /* Subtle border */
+      transition: background-color 0.5s, color 0.5s;
     }
 
+    /* Animations for text and elements */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Media Queries */
     @media (max-width: 768px) {
       header h1 {
         font-size: 2.5rem;
@@ -426,6 +415,18 @@
 
       .container {
         width: 90%;
+      }
+
+      .avatar-flutuante {
+        width: 90px; /* Smaller avatar on mobile */
+        bottom: 15px;
+        right: 15px;
+      }
+
+      .balao-fala {
+        bottom: 120px;
+        right: 100px;
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -440,148 +441,108 @@
       <a href="#contato">Contato</a>
     </nav>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">Dia ☀️ / Noite 💻</button>
-    <div class="terminal">
-    <h1 class="glitch">Bernardo Fernandes Valentim ☀️</h1>
-    <p>[~] Criando experiências digitais do terminal para a sua tela</p></div>
-    <p>$ cat sobre-mim.txt <span class="cursor"></span></p>
+    <h1>Bernardo Fernandes Valentim</h1>
+    <p>[~] Criando experiências digitais do terminal para a sua tela</p>
   </header>
 
   <main>
     <section id="sobre" class="about" aria-label="Seção Sobre Mim">
       <div class="container">
         <h1>☕ Ei, você aí...</h1>
-
-  <p>
-Nada aqui é por acaso. Se esse café te chamou,  
-é porque seu projeto tá pedindo algo mais —  
-algo com <strong>alma</strong>, com <strong>presença digital de verdade</strong>.<br><br>
-
-Me chamo <strong>Bernardo</strong>. <br><br> 
-Sou dev webe tenho conhecimento em informatica , mas prefiro dizer que um <strong> desenvolvedor transforma sonhos em realidade </strong>.  
-Pego ideias cruas, às vezes mal rabiscadas num guardanapo,  
-e transformo em sites e sistemas que não só funcionam —  
-<em>seduzem, conectam, vendem, impactam</em>.
-<br><br>
-Mas olha só: eu <strong>não sou só mais um dev</strong>.  
-Eu me envolvo, mergulho, desenrolo,  
-cutuco sua ideia até ela gritar de originalidade.
-<br><br>
-🔥 Não tô aqui pra te entregar um site comum.  
-Tô aqui pra te entregar um <strong>portal</strong>,  
-uma <strong>vitrine viva</strong>, um canal que faz sua marca  
-se destacar no meio do mar digital onde todo mundo tá gritando igual.
-<br><br>
-Você quer um <em>código bonito</em>  
-ou uma <strong>presença digital que causa impacto?</strong>
-<br><br>
-Se for o segundo…
-<br><br>
-Então <strong>bora tomar esse café, trocar ideia</strong>,  
-e começar algo que ninguém vai esquecer.
-
-  </p>
-
-         </div>
+        <p>
+          Nada aqui é por acaso. Se esse café te chamou,  
+          é porque seu projeto tá pedindo algo mais —  
+          algo com <strong>alma</strong>, com <strong>presença digital de verdade</strong>.<br><br>
+          Me chamo <strong>Bernardo</strong>. <br><br> 
+          Sou dev web, mas prefiro dizer que sou <strong>arquiteto de experiências</strong>.  
+          Pego ideias cruas, às vezes mal rabiscadas num guardanapo,  
+          e transformo em sites e sistemas que não só funcionam —  
+          <em>seduzem, conectam, vendem, impactam</em>.
+          <br><br>
+          Mas olha só: eu <strong>não sou só mais um dev</strong>.  
+          Eu me envolvo, mergulho, desenrolo,  
+          cutuco sua ideia até ela gritar de originalidade.
+          <br><br>
+          🔥 Não tô aqui pra te entregar um site comum.  
+          Tô aqui pra te entregar um <strong>portal</strong>,  
+          uma <strong>vitrine viva</strong>, um canal que faz sua marca  
+          se destacar no meio do mar digital onde todo mundo tá gritando igual.
+          <br><br>
+          Você quer um <em>código bonito</em>  
+          ou uma <strong>presença digital que causa impacto?</strong>
+          <br><br>
+          Se for o segundo…
+          <br><br>
+          Então <strong>bora tomar esse café, trocar ideia</strong>,  
+          e começar algo que ninguém vai esquecer.
+        </p>
+      </div>
     </section>
 
     <section id="habilidades" class="skills" aria-label="Seção de Habilidades Técnicas">
-      <div class="container" class="glitch">
-        <div class="terminal">
-        <h1 class="glitch">Minhas Habilidades</h1></div>
-        <p>$ cat Habilidades.txt <span class="cursor"></span></p>
+      <div class="container">
+        <h2>Minhas Habilidades</h2>
         <ul>
-          <li>
+          <li class="skill-item">
             <h3>Python</h3>
-            <p>↳ Desenvolvimento de aplicações back-end, automações e análise de dados. Experiência com Flask e Django.</p>
+            <p>Desenvolvimento de aplicações back-end, automações e análise de dados. Experiência com Flask e Django.</p>
           </li>
-          <li>
+          <li class="skill-item">
             <h3>C#</h3>
-            <p>↳ Criação de APIs, sistemas corporativos e apps com ASP.NET e Xamarin.</p>
+            <p>Criação de APIs, sistemas corporativos e apps com ASP.NET e Xamarin.</p>
           </li>
-          <li>
-            <h3>js</h3>
-            <p>↳ interações para os sites deixando-os mais interativos! </p>
+          <li class="skill-item">
+            <h3>Django</h3>
+            <p>Aplicações web robustas com APIs RESTful e admin customizado.</p>
           </li>
-          <li>
+          <li class="skill-item">
             <h3>HTML & CSS</h3>
-            <p>↳ Interfaces modernas, acessíveis e responsivas com HTML5 e CSS3 !</p>
+            <p>Interfaces modernas, acessíveis e responsivas com HTML5 e CSS3.</p>
           </li>
-          <li>
-            <h3>Informatica</h3>
-              <p>↳ Experiência sólida com Office (Word, Excel, PowerPoint), redes sociais, internet e aplicativos em geral</p>
-          </li>
-
-  </ul>
+        </ul>
       </div>
     </section>
-  </main>
-  <section class="hacker-terminal">
-                <ul class="terminal-list">
-                <li>--> GOOGLE: FERRAMENTAS DE PRODUTIVIDADE .......... [✔ 86%]</li>
-                <li>--> MS WORD - ESSENCIAL .................... [✔ 90%]</li>
-                <li>--> MS WORD - AVANÇADO ..................... [✔ 83%]</li>
-                <li>--> MS EXCEL - ESSENCIAL ................... [✔ 86%]</li>
-                <li>--> MS EXCEL - INTERMEDIÁRIO ............... [✔ 93%]</li>
-                <li>--> MS POWERPOINT - ESSENCIAL .............. [✔ 95%]</li>
-                <li>--> MS POWERPOINT - AVANÇADO ............... [✔ 88%]</li>
-                <li>--> WINDOWS 11 - ESSENCIAL ................. [✔ 70%]</li>
-                <li>--> WINDOWS 11 - AVANÇADO .................. [✔ 90%]</li>
-              </ul>
-  </section>
-    <div class="terminal" id="projetos">
-    <h1 class="glitch">┌─[Projetos]─[~]</h1>
-    <p>$ cat projetos.txt <span class="cursor"></span></p>
-
-    <div class="project">
-      <h2>&gt; projeto de banco { em desenvolvimento}</h2>
-      <p> projeto em html / css e js para mostrar os dados de compra perfeito para supermercados e lanchonetes. Proxima atualização do progrma terá sistema de cartão e cheque.  <br>
     
+    <section id="projetos" class="projects" aria-label="Seção de Projetos">
+      <div class="container">
+        <h2>Meus Projetos</h2>
+        <p>Aqui você pode ver alguns dos meus trabalhos recentes. Cada projeto é uma história de desafios superados e soluções criativas.</p>
+        <ul>
+          <li class="project-item">
+            <h3>Projeto Alpha</h3>
+            <p>Desenvolvimento de uma plataforma e-commerce responsiva com integração de pagamentos.</p>
+            </li>
+          <li class="project-item">
+            <h3>Sistema de Gestão Beta</h3>
+            <p>Construção de um sistema interno para otimização de processos empresariais.</p>
+            </li>
+          <li class="project-item">
+            <h3>API Restful XYZ</h3>
+            <p>Criação de uma API robusta para serviço de dados, com autenticação JWT.</p>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <section id="contato" class="contact" aria-label="Seção de Contato">
+    <div class="container">
+      <h2>Entre em Contato</h2>
+      <p>Gostou do meu trabalho? Vamos conversar sobre como posso ajudar seu projeto. Envie sua mensagem abaixo e eu entrarei em contato o mais rápido possível!</p>
+      <form action="mailto:bernardo.8350855@aluno.mg.gov.br" method="post" enctype="text/plain">
+        <label for="nome" class="sr-only">Nome</label> <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
+
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" name="email" id="email" placeholder="Seu E-mail" required>
+
+        <label for="mensagem" class="sr-only">Mensagem</label>
+        <textarea name="mensagem" id="mensagem" placeholder="Sua Mensagem" rows="6" required></textarea>
+
+        <button type="submit">Vamos Conversar!</button>
+      </form>
     </div>
-
-    <div class="project">
-      <h2>&gt; Raízes de Cobre </h2>
-      <p> Raízes de Cobre é um mundo onde magia e steampunk colidem. Cidades flutuam, máquinas rugem, e a natureza agoniza. Um império necromante usa o Necrocrystal pra dominar tudo, enquanto criaturas místicas e heróis tentam
-        resistir. No meio disso, a Conexão das Raízes pulsa como última esperança — uma força selvagem que une terra, ferro e espírito.</p> <br>
-      
-      <a href="https://bernardofv28.github.io/raizes-de-cobre/" class="icone"> link para ver o site
-        </a></p>
-    </div>
-
-  <div class="project">
-    <h2>&gt; Site Sobre História</h2>
-    <p>
-      E se a História fosse contada como um sussurro do tempo,<br>
-      resumida na medida, mas tão envolvente que você nem piscaria?<br>
-      Prepare-se pra mergulhar num passado que pulsa feito tambor no peito!
-    </p>
-    <br>
-  </div>
-    <div class="project">
-    <h2>&gt; site de votação</h2>
-    <p>
-     O que você acha de votar para o seu representante ou para um tema de uma 
-     feira de ciencias de forma totalmente anonima? sim isso no meu site É POSSIVEL
-    </p>
-    <br>
-  </div>
-      <div class="project">
-    <h2>&gt; RDChat {em desnvolvimento}</h2>
-    <p> já pensou em saber da historia de <strong>Luaramec</strong> {raízes de cobre} e seus personagens estilo IA ?
-    </p>
-    <br>
-  </div>
-
-  </div>
-<div class="contato" id="contato">
-  <h1 class="form-hacker">> Terminal de Contato</h1>
-  <p>Digite sua mensagem e pressione [ENVIAR]. O protocolo será iniciado.</p>
-
-  <div class="email-display">
-    <span class="prefixo">📡 canal seguro aberto:</span> 
-    <span class="email">bernardo.8350855@aluno.mg.gov.br</span>
-  </div>
-</div>
-
+  </section>
 
   <div class="avatar-flutuante" onclick="mostrarMensagem()">
     <img src="images/avatar.png" alt="Avatar do Bernardo" />
@@ -593,24 +554,83 @@ e começar algo que ninguém vai esquecer.
   </footer>
 
   <script>
+    // Theme Toggle
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
     }
 
+    // Floating Avatar Speech Bubble
     function mostrarMensagem() {
       const balao = document.getElementById('balaoFala');
-      balao.style.display = 'block';
-      balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+      // Hide and then show with animation
+      balao.style.display = 'none';
+      balao.style.opacity = '0';
+      balao.style.transform = 'translateY(20px)';
+
+      setTimeout(() => {
+        balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+        balao.style.display = 'block';
+        balao.style.opacity = '1';
+        balao.style.transform = 'translateY(0)';
+      }, 50); // Small delay to reset animation
+
+      // Hide after a few seconds
+      setTimeout(() => {
+        balao.style.opacity = '0';
+        balao.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          balao.style.display = 'none';
+        }, 500); // Wait for fade out
+      }, 5000); // Show for 5 seconds
     }
 
     const frases = [
       'Hoje é um bom dia pra codar ☕',
-      'Explore meus projetos,faço magicas com os meus codigos front-end ☕',
+      'Explore meus projetos, faço mágicas com meus códigos front-end ☕',
       'Se encontrar um bug, me chame .-. ☕',
       'React, Python e uma pitada de magia ☕',
       'Quer fazer algo único? Vem comigo! ☕',
-      'quer me conhecer melhor ? contate-me ☕'
+      'Quer me conhecer melhor? Contate-me ☕',
+      'Sua ideia + meu código = sucesso! ✨'
     ];
+
+    // Intersection Observer for Section Animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('main section');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the section is visible
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            // Animate skill items individually if the section is 'skills'
+            if (entry.target.id === 'habilidades') {
+              const skillItems = entry.target.querySelectorAll('.skill-item');
+              skillItems.forEach((item, index) => {
+                item.style.animation = `fadeInUp 0.6s ease-out forwards ${index * 0.1}s`;
+              });
+            }
+            // Animate project items individually if the section is 'projects'
+            if (entry.target.id === 'projetos') {
+              const projectItems = entry.target.querySelectorAll('.project-item');
+              projectItems.forEach((item, index) => {
+                item.style.animation = `fadeInUp 0.6s ease-out forwards ${index * 0.1}s`;
+              });
+            }
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    });
   </script>
 </body>
 </html>
