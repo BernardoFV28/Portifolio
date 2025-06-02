@@ -214,6 +214,41 @@
       box-shadow: 0 0 15px rgba(34, 34, 34, 0.6);
     }
 
+    /* Language Toggle Button */
+    .language-toggle {
+        position: absolute;
+        right: 150px; /* Adjust position relative to theme toggle */
+        top: 20px;
+        background: none;
+        border: 2px solid #33ff33;
+        color: #33ff33;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .language-toggle:hover {
+        background-color: #33ff33;
+        color: #000;
+        box-shadow: 0 0 15px rgba(51, 255, 51, 0.6);
+        transform: scale(1.05);
+    }
+
+    .light-mode .language-toggle {
+        border-color: #222;
+        color: #222;
+    }
+
+    .light-mode .language-toggle:hover {
+        background-color: #222;
+        color: #f5f5f5;
+        box-shadow: 0 0 15px rgba(34, 34, 34, 0.6);
+    }
+
+
     /* Sections */
     main section {
       padding: 80px 20px;
@@ -243,7 +278,7 @@
       margin: 0 auto;
     }
 
-    /* Skill Cards */
+    /* Skill Cards / Project Cards */
     ul {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -275,76 +310,6 @@
     li p {
       font-size: 1rem;
       color: #66ff66;
-    }
-
-    /* Contact Section */
-    .contact {
-      background-color: #000;
-      border-top: 2px solid #00cc66;
-      padding: 80px 20px;
-    }
-
-    .contact h2 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-align: center;
-      color: #00cc66;
-    }
-
-    .contact p {
-      text-align: center;
-      font-size: 1.1rem;
-      color: #66ff66;
-      margin-bottom: 40px;
-    }
-
-    .contact form {
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .contact form input,
-    .contact form textarea {
-      width: 100%;
-      padding: 15px;
-      background-color: #001100;
-      border: 2px solid #004400;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      color: #33ff33;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus */
-    }
-
-    .contact form input:focus,
-    .contact form textarea:focus {
-      border-color: #00cc66;
-      box-shadow: 0 0 10px rgba(0, 204, 102, 0.5); /* Glowing effect on focus */
-      outline: none;
-    }
-
-    .contact form button {
-      align-self: flex-end;
-      background-color: #00cc66;
-      color: black;
-      font-size: 1.2rem;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Button animations */
-    }
-
-    .contact form button:hover {
-      background-color: #00e673;
-      transform: translateY(-2px); /* Slight lift */
-      box-shadow: 0 5px 15px rgba(0, 204, 102, 0.4);
-    }
-
-    .contact form button:active {
-      transform: translateY(0); /* Press down effect */
     }
 
     /* Footer */
@@ -428,6 +393,11 @@
         right: 100px;
         font-size: 0.85rem;
       }
+
+      .theme-toggle, .language-toggle {
+        position: static; /* Adjust for mobile layout */
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
@@ -435,21 +405,21 @@
   <div class="estrelas"></div>
   <header>
     <nav>
-      <a href="#sobre">Sobre</a>
-      <a href="#habilidades">Habilidades</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#contato">Contato</a>
+      <a href="#sobre" data-lang="about">Sobre</a>
+      <a href="#habilidades" data-lang="skills">Habilidades</a>
+      <a href="#projetos" data-lang="projects">Projetos</a>
     </nav>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">Dia ☀️ / Noite 💻</button>
-    <h1>Bernardo Fernandes Valentim</h1>
-    <p>[~] Criando experiências digitais do terminal para a sua tela</p>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema" data-lang="themeToggle">Dia ☀️ / Noite 💻</button>
+    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Alternar idioma">PT / EN</button>
+    <h1 data-lang="mainTitle">Bernardo Fernandes Valentim</h1>
+    <p data-lang="subtitle">[~] Criando experiências digitais do terminal para a sua tela</p>
   </header>
 
   <main>
     <section id="sobre" class="about" aria-label="Seção Sobre Mim">
       <div class="container">
-        <h1>☕ Ei, você aí...</h1>
-        <p>
+        <h1 data-lang="aboutTitle">☕ Ei, você aí...</h1>
+        <p data-lang="aboutText">
           Nada aqui é por acaso. Se esse café te chamou,  
           é porque seu projeto tá pedindo algo mais —  
           algo com <strong>alma</strong>, com <strong>presença digital de verdade</strong>.<br><br>
@@ -481,23 +451,23 @@
 
     <section id="habilidades" class="skills" aria-label="Seção de Habilidades Técnicas">
       <div class="container">
-        <h2>Minhas Habilidades</h2>
+        <h2 data-lang="skillsTitle">Minhas Habilidades</h2>
         <ul>
           <li class="skill-item">
-            <h3>Python</h3>
-            <p>Desenvolvimento de aplicações back-end, automações e análise de dados. Experiência com Flask e Django.</p>
+            <h3 data-lang="pythonTitle">Python</h3>
+            <p data-lang="pythonDesc">Desenvolvimento de aplicações back-end, automações e análise de dados. Experiência com Flask e Django.</p>
           </li>
           <li class="skill-item">
-            <h3>C#</h3>
-            <p>Criação de APIs, sistemas corporativos e apps com ASP.NET e Xamarin.</p>
+            <h3 data-lang="csharpTitle">C#</h3>
+            <p data-lang="csharpDesc">Criação de APIs, sistemas corporativos e apps com ASP.NET e Xamarin.</p>
           </li>
           <li class="skill-item">
-            <h3>Django</h3>
-            <p>Aplicações web robustas com APIs RESTful e admin customizado.</p>
+            <h3 data-lang="djangoTitle">Django</h3>
+            <p data-lang="djangoDesc">Aplicações web robustas com APIs RESTful e admin customizado.</p>
           </li>
           <li class="skill-item">
-            <h3>HTML & CSS</h3>
-            <p>Interfaces modernas, acessíveis e responsivas com HTML5 e CSS3.</p>
+            <h3 data-lang="htmlcssTitle">HTML & CSS</h3>
+            <p data-lang="htmlcssDesc">Interfaces modernas, acessíveis e responsivas com HTML5 e CSS3.</p>
           </li>
         </ul>
       </div>
@@ -505,44 +475,50 @@
     
     <section id="projetos" class="projects" aria-label="Seção de Projetos">
       <div class="container">
-        <h2>Meus Projetos</h2>
-        <p>Aqui você pode ver alguns dos meus trabalhos recentes. Cada projeto é uma história de desafios superados e soluções criativas.</p>
+        <h2 data-lang="projectsTitle">Meus Projetos</h2>
+        <p data-lang="projectsIntro">Aqui você pode ver alguns dos meus trabalhos recentes. Cada projeto é uma história de desafios superados e soluções criativas.</p>
         <ul>
           <li class="project-item">
-            <h3>Projeto Alpha</h3>
-            <p>Desenvolvimento de uma plataforma e-commerce responsiva com integração de pagamentos.</p>
-            </li>
+            <h3 data-lang="projectAlphaTitle">Projeto Alpha</h3>
+            <p data-lang="projectAlphaDesc">Desenvolvimento de uma plataforma e-commerce responsiva com integração de pagamentos.</p>
+          </li>
           <li class="project-item">
-            <h3>Sistema de Gestão Beta</h3>
-            <p>Construção de um sistema interno para otimização de processos empresariais.</p>
-            </li>
+            <h3 data-lang="projectBetaTitle">Sistema de Gestão Beta</h3>
+            <p data-lang="projectBetaDesc">Construção de um sistema interno para otimização de processos empresariais.</p>
+          </li>
           <li class="project-item">
-            <h3>API Restful XYZ</h3>
-            <p>Criação de uma API robusta para serviço de dados, com autenticação JWT.</p>
-            </li>
+            <h3 data-lang="projectXYZTitle">API Restful XYZ</h3>
+            <p data-lang="projectXYZDesc">Criação de uma API robusta para serviço de dados, com autenticação JWT.</p>
+          </li>
+          <li class="project-item">
+            <h3 data-lang="rpgSiteTitle">Raízes de Cobre</h3>
+            <p data-lang="rpgSiteDesc">Um site interativo para campanhas de RPG, com gerenciamento de personagens e histórias.</p>
+          </li>
+          <li class="project-item">
+            <h3 data-lang="choiceGameTitle">Escolhas de Ferrumia</h3>
+            <p data-lang="choiceGameDesc">Um jogo narrativo de escolhas que moldam a história, desenvolvido com foco na ramificação de enredos.</p>
+          </li>
+          <li class="project-item">
+            <h3 data-lang="bulletHellTitle">Guerras dos Autômatos</h3>
+            <p data-lang="bulletHellDesc">Jogo estilo bullet hell com gráficos vibrantes e mecânicas de combate desafiadoras.</p>
+          </li>
+          <li class="project-item">
+            <h3 data-lang="bankProjectTitle">Projeto de Banco</h3>
+            <p data-lang="bankProjectDesc">Simulação de sistema bancário com funcionalidades de depósito, saque e transferência.</p>
+          </li>
+          <li class="project-item">
+            <h3 data-lang="rdchatTitle">RDChat</h3>
+            <p data-lang="rdchatDesc">Aplicação de chat onde você pode interagir com personagens de Red Dead Redemption, utilizando IA para as respostas.</p>
+          </li>
+          <li class="project-item">
+            <h3 data-lang="votingSiteTitle">Site de Votação</h3>
+            <p data-lang="votingSiteDesc">Plataforma online para criação e participação em votações, com resultados em tempo real e segurança de dados.</p>
+          </li>
         </ul>
       </div>
     </section>
 
   </main>
-
-  <section id="contato" class="contact" aria-label="Seção de Contato">
-    <div class="container">
-      <h2>Entre em Contato</h2>
-      <p>Gostou do meu trabalho? Vamos conversar sobre como posso ajudar seu projeto. Envie sua mensagem abaixo e eu entrarei em contato o mais rápido possível!</p>
-      <form action="mailto:bernardo.8350855@aluno.mg.gov.br" method="post" enctype="text/plain">
-        <label for="nome" class="sr-only">Nome</label> <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
-
-        <label for="email" class="sr-only">Email</label>
-        <input type="email" name="email" id="email" placeholder="Seu E-mail" required>
-
-        <label for="mensagem" class="sr-only">Mensagem</label>
-        <textarea name="mensagem" id="mensagem" placeholder="Sua Mensagem" rows="6" required></textarea>
-
-        <button type="submit">Vamos Conversar!</button>
-      </form>
-    </div>
-  </section>
 
   <div class="avatar-flutuante" onclick="mostrarMensagem()">
     <img src="images/avatar.png" alt="Avatar do Bernardo" />
@@ -550,13 +526,196 @@
   <div class="balao-fala" id="balaoFala">Bem-vindo(a)! Explore meus projetos 👾</div>
 
   <footer>
-    <p>&copy; 2025 Bernardo. Desenvolvedor Web. <a href="mailto:bernardo.8350855@aluno.mg.gov.br">Contate-me</a></p>
+    <p>&copy; 2025 Bernardo. Desenvolvedor Web. <a href="mailto:bernardo.8350855@aluno.mg.gov.br" data-lang="footerContact">Contate-me</a></p>
   </footer>
 
   <script>
+    // Language data
+    const translations = {
+      'pt': {
+        'about': 'Sobre',
+        'skills': 'Habilidades',
+        'projects': 'Projetos',
+        'themeToggle': 'Dia ☀️ / Noite 💻',
+        'mainTitle': 'Bernardo Fernandes Valentim',
+        'subtitle': '[~] Criando experiências digitais do terminal para a sua tela',
+        'aboutTitle': '☕ Ei, você aí...',
+        'aboutText': `
+          Nada aqui é por acaso. Se esse café te chamou,  
+          é porque seu projeto tá pedindo algo mais —  
+          algo com <strong>alma</strong>, com <strong>presença digital de verdade</strong>.<br><br>
+          Me chamo <strong>Bernardo</strong>. <br><br> 
+          Sou dev web, mas prefiro dizer que sou <strong>arquiteto de experiências</strong>.  
+          Pego ideias cruas, às vezes mal rabiscadas num guardanapo,  
+          e transformo em sites e sistemas que não só funcionam —  
+          <em>seduzem, conectam, vendem, impactam</em>.
+          <br><br>
+          Mas olha só: eu <strong>não sou só mais um dev</strong>.  
+          Eu me envolvo, mergulho, desenrolo,  
+          cutuco sua ideia até ela gritar de originalidade.
+          <br><br>
+          🔥 Não tô aqui pra te entregar um site comum.  
+          Tô aqui pra te entregar um <strong>portal</strong>,  
+          uma <strong>vitrine viva</strong>, um canal que faz sua marca  
+          se destacar no meio do mar digital onde todo mundo tá gritando igual.
+          <br><br>
+          Você quer um <em>código bonito</em>  
+          ou uma <strong>presença digital que causa impacto?</strong>
+          <br><br>
+          Se for o segundo…
+          <br><br>
+          Então <strong>bora tomar esse café, trocar ideia</strong>,  
+          e começar algo que ninguém vai esquecer.
+        `,
+        'skillsTitle': 'Minhas Habilidades',
+        'pythonTitle': 'Python',
+        'pythonDesc': 'Desenvolvimento de aplicações back-end, automações e análise de dados. Experiência com Flask e Django.',
+        'csharpTitle': 'C#',
+        'csharpDesc': 'Criação de APIs, sistemas corporativos e apps com ASP.NET e Xamarin.',
+        'djangoTitle': 'Django',
+        'djangoDesc': 'Aplicações web robustas com APIs RESTful e admin customizado.',
+        'htmlcssTitle': 'HTML & CSS',
+        'htmlcssDesc': 'Interfaces modernas, acessíveis e responsivas com HTML5 e CSS3.',
+        'projectsTitle': 'Meus Projetos',
+        'projectsIntro': 'Aqui você pode ver alguns dos meus trabalhos recentes. Cada projeto é uma história de desafios superados e soluções criativas.',
+        'projectAlphaTitle': 'Projeto Alpha',
+        'projectAlphaDesc': 'Desenvolvimento de uma plataforma e-commerce responsiva com integração de pagamentos.',
+        'projectBetaTitle': 'Sistema de Gestão Beta',
+        'projectBetaDesc': 'Construção de um sistema interno para otimização de processos empresariais.',
+        'projectXYZTitle': 'API Restful XYZ',
+        'projectXYZDesc': 'Criação de uma API robusta para serviço de dados, com autenticação JWT.',
+        'rpgSiteTitle': 'Raízes de Cobre',
+        'rpgSiteDesc': 'Um site interativo para campanhas de RPG, com gerenciamento de personagens e histórias.',
+        'choiceGameTitle': 'Escolhas de Ferrumia',
+        'choiceGameDesc': 'Um jogo narrativo de escolhas que moldam a história, desenvolvido com foco na ramificação de enredos.',
+        'bulletHellTitle': 'Guerras dos Autômatos',
+        'bulletHellDesc': 'Jogo estilo bullet hell com gráficos vibrantes e mecânicas de combate desafiadoras.',
+        'bankProjectTitle': 'Projeto de Banco',
+        'bankProjectDesc': 'Simulação de sistema bancário com funcionalidades de depósito, saque e transferência.',
+        'rdchatTitle': 'RDChat',
+        'rdchatDesc': 'Aplicação de chat onde você pode interagir com personagens de Red Dead Redemption, utilizando IA para as respostas.',
+        'votingSiteTitle': 'Site de Votação',
+        'votingSiteDesc': 'Plataforma online para criação e participação em votações, com resultados em tempo real e segurança de dados.',
+        'footerContact': 'Contate-me',
+        'speechBubble1': 'Hoje é um bom dia pra codar ☕',
+        'speechBubble2': 'Explore meus projetos, faço mágicas com meus códigos front-end ☕',
+        'speechBubble3': 'Se encontrar um bug, me chame .-. ☕',
+        'speechBubble4': 'React, Python e uma pitada de magia ☕',
+        'speechBubble5': 'Quer fazer algo único? Vem comigo! ☕',
+        'speechBubble6': 'Quer me conhecer melhor? Contate-me ☕',
+        'speechBubble7': 'Sua ideia + meu código = sucesso! ✨'
+      },
+      'en': {
+        'about': 'About',
+        'skills': 'Skills',
+        'projects': 'Projects',
+        'themeToggle': 'Day ☀️ / Night 💻',
+        'mainTitle': 'Bernardo Fernandes Valentim',
+        'subtitle': '[~] Crafting digital experiences from terminal to your screen',
+        'aboutTitle': '☕ Hey, you there...',
+        'aboutText': `
+          Nothing here is by chance. If this coffee called you,
+          it's because your project is asking for something more —
+          something with <strong>soul</strong>, with <strong>true digital presence</strong>.<br><br>
+          My name is <strong>Bernardo</strong>. <br><br>
+          I'm a web dev, but I prefer to say I'm an <strong>experience architect</strong>.
+          I take raw ideas, sometimes just scribbled on a napkin,
+          and transform them into websites and systems that not only work —
+          <em>seduce, connect, sell, impact</em>.
+          <br><br>
+          But look: I'm <strong>not just another dev</strong>.
+          I get involved, dive deep, untangle,
+          poke your idea until it screams originality.
+          <br><br>
+          🔥 I'm not here to deliver a common website.
+          I'm here to deliver a <strong>portal</strong>,
+          a <strong>living showcase</strong>, a channel that makes your brand
+          stand out in the digital sea where everyone is shouting the same.
+          <br><br>
+          Do you want <em>beautiful code</em>
+          or a <strong>digital presence that makes an impact?</strong>
+          <br><br>
+          If it's the second…
+          <br><br>
+          Then <strong>let's grab this coffee, chat</strong>,
+          and start something no one will forget.
+        `,
+        'skillsTitle': 'My Skills',
+        'pythonTitle': 'Python',
+        'pythonDesc': 'Development of back-end applications, automation, and data analysis. Experience with Flask and Django.',
+        'csharpTitle': 'C#',
+        'csharpDesc': 'Creation of APIs, corporate systems, and apps with ASP.NET and Xamarin.',
+        'djangoTitle': 'Django',
+        'djangoDesc': 'Robust web applications with RESTful APIs and customized admin.',
+        'htmlcssTitle': 'HTML & CSS',
+        'htmlcssDesc': 'Modern, accessible, and responsive interfaces with HTML5 and CSS3.',
+        'projectsTitle': 'My Projects',
+        'projectsIntro': 'Here you can see some of my recent work. Each project is a story of challenges overcome and creative solutions.',
+        'projectAlphaTitle': 'Project Alpha',
+        'projectAlphaDesc': 'Development of a responsive e-commerce platform with payment integration.',
+        'projectBetaTitle': 'Beta Management System',
+        'projectBetaDesc': 'Construction of an internal system for optimizing business processes.',
+        'projectXYZTitle': 'RESTful API XYZ',
+        'projectXYZDesc': 'Creation of a robust API for data services, with JWT authentication.',
+        'rpgSiteTitle': 'Copper Roots (Raízes de Cobre)',
+        'rpgSiteDesc': 'An interactive website for RPG campaigns, with character and story management.',
+        'choiceGameTitle': 'Ferrumia Choices (Escolhas de Ferrumia)',
+        'choiceGameDesc': 'A narrative choice-based game where decisions shape the story, developed with a focus on branching storylines.',
+        'bulletHellTitle': 'Automaton Wars (Guerras dos Autômatos)',
+        'bulletHellDesc': 'Bullet hell style game with vibrant graphics and challenging combat mechanics.',
+        'bankProjectTitle': 'Bank Project',
+        'bankProjectDesc': 'Banking system simulation with deposit, withdrawal, and transfer functionalities.',
+        'rdchatTitle': 'RDChat',
+        'rdchatDesc': 'Chat application where you can interact with Red Dead Redemption characters, using AI for responses.',
+        'votingSiteTitle': 'Voting Website',
+        'votingSiteDesc': 'Online platform for creating and participating in polls, with real-time results and data security.',
+        'footerContact': 'Contact me',
+        'speechBubble1': 'Today is a good day to code ☕',
+        'speechBubble2': 'Explore my projects, I do magic with my front-end code ☕',
+        'speechBubble3': 'If you find a bug, call me .-. ☕',
+        'speechBubble4': 'React, Python, and a pinch of magic ☕',
+        'speechBubble5': 'Want to build something unique? Come with me! ☕',
+        'speechBubble6': 'Want to know me better? Contact me ☕',
+        'speechBubble7': 'Your idea + my code = success! ✨'
+      }
+    };
+
+    let currentLanguage = 'pt'; // Default language
+
     // Theme Toggle
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
+    }
+
+    // Language Toggle
+    function toggleLanguage() {
+      currentLanguage = currentLanguage === 'pt' ? 'en' : 'pt';
+      updateContentLanguage();
+    }
+
+    function updateContentLanguage() {
+      document.querySelectorAll('[data-lang]').forEach(element => {
+        const key = element.getAttribute('data-lang');
+        if (translations[currentLanguage][key]) {
+          // For elements that are not inputs or textareas, update innerHTML
+          // For paragraph text, specifically handle strong tags within
+          if (element.tagName === 'P' && (key === 'aboutText' || key === 'projectsIntro')) {
+            element.innerHTML = translations[currentLanguage][key];
+          } else {
+            element.innerText = translations[currentLanguage][key];
+          }
+        }
+      });
+      // Update speech bubble phrases based on current language
+      updateSpeechBubblePhrases();
+    }
+
+    function updateSpeechBubblePhrases() {
+      const phrases = [];
+      for (let i = 1; i <= 7; i++) {
+        phrases.push(translations[currentLanguage][`speechBubble${i}`]);
+      }
+      window.speechBubblePhrases = phrases; // Store in global scope for use by mostrarMensagem
     }
 
     // Floating Avatar Speech Bubble
@@ -568,7 +727,12 @@
       balao.style.transform = 'translateY(20px)';
 
       setTimeout(() => {
-        balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+        const currentPhrases = window.speechBubblePhrases || [];
+        if (currentPhrases.length > 0) {
+            balao.innerText = currentPhrases[Math.floor(Math.random() * currentPhrases.length)];
+        } else {
+            balao.innerText = translations[currentLanguage]['speechBubble1']; // Fallback
+        }
         balao.style.display = 'block';
         balao.style.opacity = '1';
         balao.style.transform = 'translateY(0)';
@@ -584,18 +748,10 @@
       }, 5000); // Show for 5 seconds
     }
 
-    const frases = [
-      'Hoje é um bom dia pra codar ☕',
-      'Explore meus projetos, faço mágicas com meus códigos front-end ☕',
-      'Se encontrar um bug, me chame .-. ☕',
-      'React, Python e uma pitada de magia ☕',
-      'Quer fazer algo único? Vem comigo! ☕',
-      'Quer me conhecer melhor? Contate-me ☕',
-      'Sua ideia + meu código = sucesso! ✨'
-    ];
-
     // Intersection Observer for Section Animations
     document.addEventListener('DOMContentLoaded', () => {
+      updateContentLanguage(); // Set initial language on load
+
       const sections = document.querySelectorAll('main section');
 
       const observerOptions = {
